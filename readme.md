@@ -27,7 +27,8 @@ import (
 )
 
 func main() {
-	ding := robot.New("xxxxx", "xxxxx")
+	//机器人Token是webhook上的access_token参数值
+	ding := robot.New("机器人TOKEN", "签名密钥")
 
 	//text类型
 	text := message.NewText()
