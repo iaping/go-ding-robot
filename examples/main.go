@@ -8,12 +8,12 @@ import (
 )
 
 func main() {
-	robot := robot.New("xxxxx", "xxxxx")
+	ding := robot.New("xxxxx", "xxxxx")
 
 	//text类型
 	text := message.NewText()
 	text.SetContent("测试text类型").SetIsAll(true).SetAtMobiles([]string{"xxxxxxxxxxx"})
-	resp, err := robot.Send(text)
+	resp, err := ding.Send(text)
 	if err == nil {
 		fmt.Println("result:", resp.IsSuccess(), "code:", resp.GetCode(), "message:", resp.GetMessage())
 	}
@@ -24,7 +24,7 @@ func main() {
 	link.SetText("测试link类型")
 	link.SetUrl("https://www.dingtalk.com")
 	link.SetPic("//www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png")
-	resp, err = robot.Send(link)
+	resp, err = ding.Send(link)
 	if err == nil {
 		fmt.Println("result:", resp.IsSuccess(), "code:", resp.GetCode(), "message:", resp.GetMessage())
 	}
@@ -34,7 +34,7 @@ func main() {
 	markdown.SetTitle("markdown类型")
 	markdown.SetText("#### 杭州天气 @150XXXXXXXX \n> 9度，西北风1级，空气良89，相对温度73%\n> ![screenshot](https://img.alicdn.com/tfs/TB1NwmBEL9TBuNjy1zbXXXpepXa-2400-1218.png)\n> ###### 10点20分发布 [天气](https://www.dingtalk.com) \n")
 	markdown.SetIsAll(true).SetAtMobiles([]string{"xxxxxxxxxxx"})
-	resp, err = robot.Send(markdown)
+	resp, err = ding.Send(markdown)
 	if err == nil {
 		fmt.Println("result:", resp.IsSuccess(), "code:", resp.GetCode(), "message:", resp.GetMessage())
 	}
@@ -51,7 +51,7 @@ func main() {
 	link4.SetPic("https://gw.alicdn.com/tfs/TB1ayl9mpYqK1RjSZLeXXbXppXa-170-62.png")
 	link4.SetUrl("https://www.dingtalk.com")
 	feedCard.AddLink(link4)
-	resp, err = robot.Send(feedCard)
+	resp, err = ding.Send(feedCard)
 	if err == nil {
 		fmt.Println("result:", resp.IsSuccess(), "code:", resp.GetCode(), "message:", resp.GetMessage())
 	}
@@ -63,7 +63,7 @@ func main() {
 	actionCard1.SetText("![screenshot](https://gw.alicdn.com/tfs/TB1ut3xxbsrBKNjSZFpXXcXhFXa-846-786.png) ### 乔布斯 20 年前想打造的苹果咖啡厅 Apple Store 的设计正从原来满满的科技感走向生活化，而其生活化的走向其实可以追溯到 20 年前苹果一个建立咖啡馆的计划")
 	actionCard1.SetBtnTitle("测试按钮")
 	actionCard1.SetBtnUrl("https://www.dingtalk.com")
-	resp, err = robot.Send(actionCard1)
+	resp, err = ding.Send(actionCard1)
 	if err == nil {
 		fmt.Println("result:", resp.IsSuccess(), "code:", resp.GetCode(), "message:", resp.GetMessage())
 	}
@@ -79,7 +79,7 @@ func main() {
 	btn4.SetUrl("https://www.dingtalk.com")
 	actionCard2.SetBtnOrientation(message.BtnOrientationHorizontal)
 	actionCard2.AddBtn(btn4)
-	resp, err = robot.Send(actionCard2)
+	resp, err = ding.Send(actionCard2)
 	if err == nil {
 		fmt.Println("result:", resp.IsSuccess(), "code:", resp.GetCode(), "message:", resp.GetMessage())
 	}
