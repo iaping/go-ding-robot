@@ -1,5 +1,7 @@
 package message
 
+const MaxFeedCardLinks = 10
+
 type FeedCard struct {
 	Message
 	FeedCardBody *FeedCardBody `json:"feedCard"`
@@ -16,7 +18,12 @@ func (fc *FeedCard) SetLinks(links []*FeedCardLinkBody) *FeedCard {
 	if fc.FeedCardBody == nil {
 		fc.setDefaultFeedCardBody()
 	}
-	fc.FeedCardBody.Links = links
+
+	if len(links) > MaxFeedCardLinks {
+		fc.FeedCardBody.Links = links[:MaxFeedCardLinks]
+	} else {
+		fc.FeedCardBody.Links = links
+	}
 
 	return fc
 }
@@ -25,9 +32,19 @@ func (fc *FeedCard) AddLink(link *FeedCardLinkBody) *FeedCard {
 	if fc.FeedCardBody == nil {
 		fc.setDefaultFeedCardBody()
 	}
+
+	if fc.isFull() {
+		return fc
+	}
+
 	fc.FeedCardBody.Links = append(fc.FeedCardBody.Links, link)
 
 	return fc
+}
+
+// FeedCard目前最大支持10条
+func (fc *FeedCard) isFull() bool {
+	return len(fc.FeedCardBody.Links) >= MaxFeedCardLinks
 }
 
 func (fc *FeedCard) setDefaultFeedCardBody() *FeedCard {
