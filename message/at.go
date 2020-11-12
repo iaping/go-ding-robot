@@ -20,7 +20,7 @@ func (at *At) SetIsAll(isAll bool) *At {
 		at.setDefaultAtBody()
 	}
 	if isAll {
-		at.SetAtMobiles([]string{})
+		at.SetAtMobiles(nil)
 	}
 	at.AtBody.IsAll = isAll
 
